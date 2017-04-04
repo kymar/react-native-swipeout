@@ -77,10 +77,9 @@ const SwipeoutBtn = React.createClass({
     return  (
       <NativeButton
         onPress={this.props.onPress}
-        style={styles.swipeoutBtnTouchable}
         underlayColor={this.props.underlayColor}
         disabled={this.props.disabled}
-        style={styleSwipeoutBtn}
+        style={[styleSwipeoutBtn, this.props.style]}
         textStyle={styleSwipeoutBtnText}>
         {
           (btn.component ?
@@ -309,7 +308,7 @@ const Swipeout = React.createClass({
       <View style={styleSwipeout}>
         <View
           ref="swipeoutContent"
-          style={styleContent}
+          style={[styleContent, this.props.style]}
           onLayout={this._onLayout}
           {...this._panResponder.panHandlers}>
           {this.props.children}
@@ -353,10 +352,11 @@ const Swipeout = React.createClass({
           text={btn.text}
           type={btn.type}
           underlayColor={btn.underlayColor}
+          style={btn.style}
           width={this.state.btnWidth}/>
       );
   }
-})
+});
 
 Swipeout.NativeButton = NativeButton;
 Swipeout.SwipeoutButton = SwipeoutBtn;
